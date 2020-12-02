@@ -1,0 +1,22 @@
+{% assign id = include.article.relative_path | split: '/' | last | remove_first: '.md' -%}
+{% capture markdown_options -%}
+  {::options auto_id_prefix="{{ id }}-" footnote_prefix="{{ id }}-" /}
+{% endcapture -%}
+
+<article id="{{ id }}" class="{% if include.article.poem -%} poem {%- else -%} article {%- endif %}">
+  {% unless include.article.heading == false -%}
+    <h5 class="title-line mt-3 mb-5">
+      {%- if include.article.heading -%}
+        {{ include.article.heading | join: '<span class="space"></span><span class="space"></span>' }}
+      {%- elsif include.article.author -%}
+        {{ include.article.title }}<span class="space"></span><span class="space"></span>{{ include.article.author }}
+      {%- else -%}
+        {{ include.article.title }}
+      {%- endif -%}
+    </h5>
+  {%- endunless %}
+
+  <div class="article-text {% if include.article.split_columns -%} split-columns {%- endif %}">
+    {{ include.article.content | prepend: markdown_options | markdownify }}
+  </div>
+</article>

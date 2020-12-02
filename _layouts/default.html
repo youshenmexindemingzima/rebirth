@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-CN" class="h-100">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    {% capture title -%}
+      {%- if page.url == '/' -%}
+        {{ site.title }} | {{ site.tagline }}
+      {%- elsif page.collection == 'articles' -%}
+        {%- assign paths = page.relative_path | split: '/' -%}
+        {%- if paths.size == 2 -%}
+          期刊 | {{ site.title }}
+        {%- elsif paths.size == 3 -%}
+          {{ paths[1] }} | {{ site.title }}
+        {%- elsif paths.size == 4 -%}
+          {{ paths[2] }} | {{ paths[1] }}
+        {%- elsif paths.size == 5 -%}
+          {%- if page.author -%}
+            《{{ page.title }}》{{ page.author }} | {{ paths[1] }}
+          {%- else -%}
+            《{{ page.title }}》 | {{ paths[1] }}
+          {%- endif -%}
+        {%- endif -%}
+      {%- else -%}
+        {{ page.title }} | {{ site.title }}
+      {%- endif -%}
+    {%- endcapture -%}
+    {%- assign title = title | strip_html | xml_escape -%}
+
+    <title>{{ title }}</title>
+
+    <meta property="og:title" content="{{ title }}">
+    <meta name="author" content="{{ page.author | default: site.author | xml_escape }}">
+    <meta property="og:locale" content="zh_CN">
+    <meta name="description" content="{{ page.description | default: page.excerpt | strip_html | xml_escape | truncate: 50 }}">
+    <meta property="og:description" content="{{ page.description | default: page.excerpt | strip_html | xml_escape | truncate: 50 }}">
+    <link rel="canonical" href="{{ page.url | absolute_url }}">
+    <meta property="og:url" content="{{ page.url | absolute_url }}">
+    <meta property="og:site_name" content="{{ site.title | xml_escape }}">
+
+    <link rel="stylesheet" href="{{ '/vendors/bootstrap/bootstrap.min.css' | relative_url }}">
+    <link rel="stylesheet" href="{{ '/css/main.css' | relative_url }}">
+  </head>
+
+  <body class="d-flex flex-column h-100">
+
+    {% include header.html %}
+
+    {{ content }}
+
+    <script src="{{ '/vendors/jquery/jquery.min.js' | relative_url }}"></script>
+    <script src="{{ '/vendors/bootstrap/bootstrap.bundle.min.js' | relative_url }}"></script>
+  </body>
+</html>

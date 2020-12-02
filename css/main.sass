@@ -1,0 +1,274 @@
+---
+---
+// TODO: poem: make columns so that either manually or automatically (if < width / 2) it can be split viewed
+
+// Constants
+
+$breakpoint-small: 32rem
+$breakpoint-large: 56rem
+
+$padding-x: 4rem
+$padding-x-small: 6rem
+$padding-x-large: 8rem
+
+$article-font-size: 1em
+$root-font-size: 18px
+
+$article-max-width: 37.5em
+$article-min-width: 15em
+
+$color-primary: black
+
+@mixin define-font-face($font-name, $font-filename, $font-weight: null)
+  $formats: (woff2 woff2, woff woff, ttf truetype)
+
+  $src: ()
+  @each $extension, $format in $formats
+    $src: append($src, url(/fonts/#{$font-filename}.#{$extension}) format("#{$format}"), $separator: comma)
+
+  @font-face
+    font-family: $font-name
+    src: $src
+    font-display: swap
+
+    @if font-weight
+      font-weight: $font-weight
+
+@include define-font-face(Songti, AdobeSongStd-Light, $font-weight: 300)
+@include define-font-face(Songti, STSongti-SC-Bold, $font-weight: bold)
+@include define-font-face(Songti, STSongti-SC-Black, $font-weight: 900)
+@include define-font-face(Kaiti, STKaiti)
+@include define-font-face(Mingti, HanWangMing-Bold, $font-weight: bold)
+
+$font-songti: Songti, Songti SC, STSong, SimSun, serif
+$font-mingti: Mingti, MingLiU, $font-songti
+$font-kaiti: Kaiti, Kaiti SC, STKaiti, serif
+
+// Helper classes
+
+.space
+  display: inline-block
+  width: 1em
+  height: 1em
+  visibility: hidden
+
+.no-indent
+  text-indent: 0 !important
+
+.indent
+  text-indent: 2em !important
+
+@mixin define-font-class($name, $font)
+  .#{$name}
+    font-family: $font !important
+
+@include define-font-class(font-songti, $font-songti)
+@include define-font-class(font-mingti, $font-mingti)
+@include define-font-class(font-kaiti, $font-kaiti)
+
+// General styles
+
+a
+  color: inherit
+
+  &:hover
+    text-decoration: inherit
+
+cite
+  font-style: normal
+
+// Element-specific styles
+
+html
+  font-size: $root-font-size
+
+body
+  overflow-y: hidden
+
+  font-family: $font-songti
+  font-weight: 300
+  letter-spacing: 0em
+
+.navbar
+  z-index: 1030
+
+  background: $color-primary
+  font-family: $font-songti
+  font-weight: bold
+
+  a
+    white-space: nowrap
+
+.dark-link
+    color: #ddd
+
+    &:hover, &.active
+      color: #fff
+
+@mixin contents-position()
+  position: absolute
+  top: 3.5rem
+  bottom: 0
+  left: 0
+  padding: 1rem
+
+@mixin contents-color()
+  color: rgba($color-primary, .5)
+
+  &:hover, &.active
+    color: $color-primary
+
+#contents-toggle
+  @include contents-position()
+  display: flex
+  align-items: center
+  visibility: visible
+  transform: none
+  opacity: 1
+  transition: .5s ease
+
+  &.expanded
+    visibility: hidden
+    transform: translateX(-20px)
+    opacity: 0
+
+#contents-toggle::after
+  @include contents-color()
+  content: ""
+  border-top: .5em solid transparent
+  border-right: 0
+  border-bottom: .5em solid transparent
+  border-left: .5em solid
+
+#contents
+  @include contents-position()
+  overflow-y: scroll
+  visibility: hidden
+  transform: translateX(-20px)
+  opacity: 0
+  transition: .5s ease
+
+  background: white
+  font: bold 90%/1 $font-songti
+
+  @for $offset from 0 to 5
+    $screen-width: $breakpoint-large + $offset * 8rem
+    @media screen and (min-width: $screen-width * $root-font-size / 1rem)
+        max-width: ($screen-width - $article-max-width * $article-font-size / 1em / 1em) / 2
+
+  &.expanded
+    visibility: visible
+    transform: none
+    opacity: 1
+
+  a
+    @include contents-color()
+
+  & > a
+    font-family: $font-mingti
+    padding: .65rem 0 .25rem 0
+
+  & > nav > a
+    font-size: 90%
+    padding: .25rem 0 .25rem 1em
+
+  & > :first-child
+    margin-top: auto
+
+  & > :last-child
+    margin-bottom: auto
+
+main
+  position: relative
+  padding: 0 $padding-x
+  overflow-y: scroll
+
+  @media screen and (min-width: $breakpoint-small * $root-font-size / 1rem)
+    padding: 0 $padding-x-small
+
+  @media screen and (min-width: $breakpoint-large * $root-font-size / 1rem)
+    padding: 0 $padding-x-large
+
+  & > *
+    margin-top: 1.5rem
+    margin-bottom: 1.5rem
+
+    &:first-child
+      margin-top: 4rem
+
+    &:last-child
+      margin-bottom: 4rem
+
+.article, .poem, .previous-next-articles
+  max-width: 100%
+
+  font: #{$article-font-size}/2 $font-songti
+
+  .title-line
+    font-weight: 900
+
+  .article-text
+    max-width: $article-max-width
+    overflow-x: scroll
+
+    @media screen and (min-width: 2 * $padding-x-small * $root-font-size / 1rem + $article-min-width * $article-font-size * $root-font-size / 1em / 1em)
+      min-width: $article-min-width
+
+  h1, h2, h3, h4, h5, h6
+    margin: 3em 0 2em 0
+
+  h5
+    font-size: 1.1em
+
+  p
+    margin-bottom: 1em
+
+    font-weight: 300
+    color: $color-primary
+    text-align: justify
+    white-space: pre-wrap
+
+  em
+    font-style: inherit
+    text-emphasis: dot
+    text-emphasis-position: under
+    -webkit-text-emphasis: dot
+    -webkit-text-emphasis-position: under
+
+  blockquote
+    padding-left: 2em
+
+    &.text-right
+      padding-left: 0
+
+      p
+        text-align: right !important
+
+    p, li
+      font-family: $font-kaiti
+      text-indent: 0
+
+  img
+    width: 100%
+    float: left
+    margin: 1em 0
+
+  a:hover
+    color: rgba($color-primary, .75)
+
+  ol, ul
+    padding-left: 1em
+
+  .footnotes
+    margin-top: 2em
+
+    ol
+      font-size: small
+
+.article p
+  text-indent: 2em
+
+.previous-next-articles
+  width: $article-max-width
+
+  font-weight: bold

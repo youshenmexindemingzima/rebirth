@@ -1,0 +1,34 @@
+{% assign path = include.chapter.relative_path | split: '/' -%}
+{% assign chapter_name = path[2] -%}
+
+<header id="{{ chapter_name }}" class="chapter-heading d-flex flex-column align-items-center">
+  <h1 class="font-mingti font-weight-bold mb-0" style="font-size: 1.75em;">{{ chapter_name }}</h1>
+
+  <div class="my-3" style="border-bottom: 1px solid black; width: 12rem; max-width: 100%;"></div>
+
+  {% if include.chapter.subtitle -%}
+    <div class="d-flex flex-column align-items-center font-kaiti text-justify" style="line-height: 1.5; max-width: 28em;">
+      {% for subtitle in include.chapter.subtitle -%}
+        {% assign characters = subtitle | split: '' -%}
+        <p class="mb-0 position-relative">
+          {%- for character in characters -%}
+            {%- comment -%}
+              if the last character is a full-width stop punctuation, it shouldn't take up any width
+            {%- endcomment -%}
+            {%- if forloop.last and '、。！＂＇，．／：；？＼﹐﹑﹒' contains character -%}
+              <span class="position-absolute">{{ character }}</span>
+            {%- else -%}
+              {{ character }}
+            {%- endif -%}
+          {%- endfor -%}
+        </p>
+      {%- endfor %}
+
+      {% if include.chapter.subtitle_cite -%}
+        <p class="mb-0 align-self-end">
+          <cite style="font-style: normal;">——{{ include.chapter.subtitle_cite }}</cite>
+        </p>
+      {%- endif %}
+    </div>
+  {%- endif %}
+</header>
