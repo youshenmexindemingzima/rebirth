@@ -94,7 +94,7 @@ layout: default
 
     <a class="nav-link {% if chapter == page -%} active {%- endif %}" href="{{ chapter_href }}">{{ chapter_entry }}</a>
 
-    <nav class="nav flex-column">
+    <nav class="nav flex-column flex-nowrap">
       {% for article_name in chapter.articles -%}
         {% capture article_path -%}
           _articles/{{ issue_name }}/{{ chapter_name }}/{{ article_name }}.md
