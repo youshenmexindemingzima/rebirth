@@ -14,7 +14,7 @@ layout: default
 
 {% assign issues_index = site.articles | where: 'relative_path', '_articles/index.md' -%}
 
-<main data-spy="scroll" data-target="#contents" data-offset="0" class="d-flex flex-column align-items-center">
+<main class="d-flex flex-column align-items-center">
   {% include chapter-heading.html chapter=page -%}
 
   {% for article_name in page.articles -%}
@@ -94,7 +94,7 @@ layout: default
 
     <a class="nav-link {% if chapter == page -%} active {%- endif %}" href="{{ chapter_href }}">{{ chapter_entry }}</a>
 
-    <nav class="nav flex-column flex-nowrap">
+    <nav class="nav flex-column flex-nowrap flex-shrink-0">
       {% for article_name in chapter.articles -%}
         {% capture article_path -%}
           _articles/{{ issue_name }}/{{ chapter_name }}/{{ article_name }}.md
