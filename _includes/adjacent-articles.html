@@ -1,0 +1,59 @@
+{% assign paths = include.chapter.relative_path | split: '/' -%}
+
+{% assign chapter_name = paths[2] -%}
+
+{% assign issue_name = paths[1] -%}
+{% capture issue_path -%}
+  _articles/{{ issue_name }}/index.md
+{%- endcapture -%}
+{% assign issue = site.articles | where: 'relative_path', issue_path | first -%}
+
+{% assign issues_index = site.articles | where: 'relative_path', '_articles/index.md' -%}
+
+<nav class="adjacent-articles d-flex">
+  {%- assign previous = nil -%}
+  {%- assign next = nil -%}
+
+  {%- for this_issue_name in issues_index.issues -%} {%- if this_issue_name == issue_name -%}
+    {%- unless forloop.first -%}
+      {%- assign previous_index = forloop.index0 | minus: 1 -%}
+      {%- assign previous = issues_index.issues[previous_index] -%}
+      {%- capture previous_url -%}
+        ../../{{ previous }}/
+      {%- endcapture -%}
+    {%- endunless -%}
+
+    {%- unless forloop.last -%}
+      {%- assign next_index = forloop.index0 | plus: 1 -%}
+      {%- assign next = issues_index.issues[next_index] -%}
+      {%- capture next_url -%}
+        ../../{{ next }}/
+      {%- endcapture -%}
+    {%- endunless -%}
+  {%- endif -%} {%- endfor -%}
+
+  {% for this_chapter_name in issue.chapters -%} {%- if this_chapter_name == chapter_name -%}
+    {%- unless forloop.first -%}
+      {%- assign previous_index = forloop.index0 | minus: 1 -%}
+      {%- assign previous = issue.chapters[previous_index] -%}
+      {%- capture previous_url -%}
+        ../{{ previous }}/
+      {%- endcapture -%}
+    {%- endunless -%}
+
+    {%- unless forloop.last -%}
+      {%- assign next_index = forloop.index0 | plus: 1 -%}
+      {%- assign next = issue.chapters[next_index] -%}
+      {%- capture next_url -%}
+        ../{{ next }}/
+      {%- endcapture -%}
+    {%- endunless -%}
+  {%- endif -%} {%- endfor -%}
+
+  {% if previous -%}
+    <a href="{{ previous_url }}" class="mr-auto">&larr; {{ previous }}</a>
+  {%- endif %}
+  {% if next -%}
+    <a href="{{ next_url }}" class="ml-auto">{{ next }} &rarr;</a>
+  {%- endif %}
+</nav>

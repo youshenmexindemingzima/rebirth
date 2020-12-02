@@ -4,18 +4,12 @@ layout: default
 
 {% assign paths = page.relative_path | split: '/' -%}
 
-{% assign name = paths[2] -%}
+{% assign chapter_name = paths[2] -%}
 
 {% assign issue_name = paths[1] -%}
-{% capture issue_path -%}
-  _articles/{{ issue_name }}/index.md
-{%- endcapture -%}
-{% assign issue = site.articles | where: 'relative_path', issue_path | first -%}
-
-{% assign issues_index = site.articles | where: 'relative_path', '_articles/index.md' -%}
 
 <main class="d-flex flex-column align-items-center">
-  {% include chapter-heading.html chapter=page -%}
+  {% include chapter-heading.html chapter=page %}
 
   {% for article_name in page.articles -%}
     {% capture article_path -%}
@@ -26,128 +20,7 @@ layout: default
     {% include article.html article=article -%}
   {%- endfor %}
 
-  <nav class="previous-next-articles">
-    {%- assign previous = nil -%}
-    {%- assign next = nil -%}
-
-    {%- for this_issue_name in issues_index.issues -%} {%- if issue_name == this_issue_name -%}
-      {%- unless forloop.first -%}
-        {%- assign previous_index = forloop.index0 | minus: 1 -%}
-        {%- assign previous = issues_index.issues[previous_index] -%}
-        {%- capture previous_url -%}
-          ../../{{ previous }}/
-        {%- endcapture -%}
-      {%- endunless -%}
-
-      {%- unless forloop.last -%}
-        {%- assign next_index = forloop.index0 | plus: 1 -%}
-        {%- assign next = issues_index.issues[next_index] -%}
-        {%- capture next_url -%}
-          ../../{{ next }}/
-        {%- endcapture -%}
-      {%- endunless -%}
-    {%- endif -%} {%- endfor -%}
-
-    {% for chapter_name in issue.chapters -%} {%- if name == chapter_name -%}
-      {%- unless forloop.first -%}
-        {%- assign previous_index = forloop.index0 | minus: 1 -%}
-        {%- assign previous = issue.chapters[previous_index] -%}
-        {%- capture previous_url -%}
-          ../{{ previous }}/
-        {%- endcapture -%}
-      {%- endunless -%}
-
-      {%- unless forloop.last -%}
-        {%- assign next_index = forloop.index0 | plus: 1 -%}
-        {%- assign next = issue.chapters[next_index] -%}
-        {%- capture next_url -%}
-          ../{{ next }}/
-        {%- endcapture -%}
-      {%- endunless -%}
-    {%- endif -%} {%- endfor -%}
-
-    {% if previous -%}
-      <a href="{{ previous_url }}" style="float: left;">&larr; {{ previous }}</a>
-    {%- endif %}
-    {% if next -%}
-      <a href="{{ next_url }}" style="float: right;">{{ next }} &rarr;</a>
-    {%- endif %}
-  </nav>
+  {% include adjacent-articles.html chapter=page -%}
 </main>
 
-<nav id="contents" class="nav flex-column flex-nowrap">
-  <a href=".." class="nav-link align-self-center">{{ issue_name }}</a>
-
-  {% for chapter_name in issue.chapters -%}
-    {% capture chapter_path -%}
-      _articles/{{ issue_name }}/{{ chapter_name }}/index.md
-    {%- endcapture -%}
-    {% assign chapter = site.articles | where: 'relative_path', chapter_path | first -%}
-    {% assign chapter_entry = chapter.entry | default: chapter_name -%}
-    {% capture chapter_href -%}
-      {% if chapter == page -%}
-        #{{ chapter_name }}
-      {%- else -%}
-        ../{{ chapter_name }}/
-      {%- endif -%}
-    {%- endcapture -%}
-
-    <a class="nav-link {% if chapter == page -%} active {%- endif %}" href="{{ chapter_href }}">{{ chapter_entry }}</a>
-
-    <nav class="nav flex-column flex-nowrap flex-shrink-0">
-      {% for article_name in chapter.articles -%}
-        {% capture article_path -%}
-          _articles/{{ issue_name }}/{{ chapter_name }}/{{ article_name }}.md
-        {%- endcapture -%}
-        {% assign article = site.articles | where: 'relative_path', article_path | first -%}
-        {% assign article_entry = article.entry | default: article.title -%}
-        {% capture article_href -%}
-          {% if chapter == page -%}
-            #{{ article_name }}
-          {%- else -%}
-            ../{{ chapter_name }}/#{{ article_name }}
-          {%- endif -%}
-        {%- endcapture -%}
-
-        {% unless article.entry == false -%}
-          <a class="nav-link" href="{{ article_href }}">{{ article_entry }}</a>
-        {%- endunless %}
-      {%- endfor %}
-    </nav>
-  {%- endfor %}
-</nav>
-
-<a id="contents-toggle"></a>
-
-<script>
-  const contents = document.getElementById('contents');
-  const contentsToggle = document.getElementById('contents-toggle');
-
-  const expandContents = () => {
-    contents.classList.add('expanded');
-    contentsToggle.classList.add('expanded');
-  };
-
-  const hideContents = () => {
-    contents.classList.remove('expanded');
-    contentsToggle.classList.remove('expanded');
-  };
-
-  document.addEventListener('click', event => {
-    if (!contentsToggle.contains(event.target) && !contents.contains(event.target)) {
-      hideContents();
-    }
-  });
-
-  contentsToggle.addEventListener('mouseenter', event => {
-    if (event.target === contentsToggle) {
-      expandContents();
-    }
-  });
-
-  contents.addEventListener('mouseleave', event => {
-    if (event.target === contents) {
-      hideContents();
-    }
-  });
-</script>
+{% include contents.html chapter=page %}

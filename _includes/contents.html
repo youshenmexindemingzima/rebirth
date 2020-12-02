@@ -1,0 +1,84 @@
+{% assign paths = include.chapter.relative_path | split: '/' -%}
+
+{% assign issue_name = paths[1] -%}
+{% capture issue_path -%}
+  _articles/{{ issue_name }}/index.md
+{%- endcapture -%}
+{% assign issue = site.articles | where: 'relative_path', issue_path | first -%}
+
+<nav id="contents" class="nav flex-column flex-nowrap">
+  <a href=".." class="nav-link align-self-center">{{ issue_name }}</a>
+
+  {% for chapter_name in issue.chapters -%}
+    {% capture chapter_path -%}
+      _articles/{{ issue_name }}/{{ chapter_name }}/index.md
+    {%- endcapture -%}
+    {% assign chapter = site.articles | where: 'relative_path', chapter_path | first -%}
+    {% assign chapter_entry = chapter.entry | default: chapter_name -%}
+    {% capture chapter_href -%}
+      {% if chapter == include.chapter -%}
+        #{{ chapter_name }}
+      {%- else -%}
+        ../{{ chapter_name }}/
+      {%- endif -%}
+    {%- endcapture -%}
+
+    <a class="nav-link {% if chapter == include.chapter -%} active {%- endif %}" href="{{ chapter_href }}">{{ chapter_entry }}</a>
+
+    <nav class="nav flex-column flex-nowrap flex-shrink-0">
+      {% for article_name in chapter.articles -%}
+        {% capture article_path -%}
+          _articles/{{ issue_name }}/{{ chapter_name }}/{{ article_name }}.md
+        {%- endcapture -%}
+        {% assign article = site.articles | where: 'relative_path', article_path | first -%}
+        {% assign article_entry = article.entry | default: article.title -%}
+        {% capture article_href -%}
+          {% if chapter == include.chapter -%}
+            #{{ article_name }}
+          {%- else -%}
+            ../{{ chapter_name }}/#{{ article_name }}
+          {%- endif -%}
+        {%- endcapture -%}
+
+        {% unless article.entry == false -%}
+          <a class="nav-link" href="{{ article_href }}">{{ article_entry }}</a>
+        {%- endunless %}
+      {%- endfor %}
+    </nav>
+  {%- endfor %}
+</nav>
+
+<a id="contents-toggle"></a>
+
+<script>
+  const contents = document.getElementById('contents');
+  const contentsToggle = document.getElementById('contents-toggle');
+
+  const expandContents = () => {
+    contents.classList.add('expanded');
+    contentsToggle.classList.add('expanded');
+  };
+
+  const hideContents = () => {
+    contents.classList.remove('expanded');
+    contentsToggle.classList.remove('expanded');
+  };
+
+  document.addEventListener('click', event => {
+    if (!contentsToggle.contains(event.target) && !contents.contains(event.target)) {
+      hideContents();
+    }
+  });
+
+  contentsToggle.addEventListener('mouseenter', event => {
+    if (event.target === contentsToggle) {
+      expandContents();
+    }
+  });
+
+  contents.addEventListener('mouseleave', event => {
+    if (event.target === contents) {
+      hideContents();
+    }
+  });
+</script>
