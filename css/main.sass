@@ -31,18 +31,14 @@ $color-primary: black
     src: $src
     font-display: swap
 
-    @if font-weight
+    @if $font-weight
       font-weight: $font-weight
 
-@include define-font-face(Songti, AdobeSongStd-Light, $font-weight: 300)
-@include define-font-face(Songti, STSongti-SC-Bold, $font-weight: bold)
-@include define-font-face(Songti, STSongti-SC-Black, $font-weight: 900)
+@include define-font-face(Songti Light, AdobeSongStd-Light, $font-weight: 300)
+@include define-font-face(Songti Bold, STSongti-SC-Bold, $font-weight: bold)
+@include define-font-face(Songti Black, STSongti-SC-Black, $font-weight: 900)
 @include define-font-face(Kaiti, STKaiti)
 @include define-font-face(Mingti, HanWangMing-Bold, $font-weight: bold)
-
-$font-songti: Songti, Songti SC, STSong, SimSun, serif
-$font-mingti: Mingti, MingLiU, $font-songti
-$font-kaiti: Kaiti, Kaiti SC, STKaiti, serif
 
 // Helper classes
 
@@ -58,13 +54,25 @@ $font-kaiti: Kaiti, Kaiti SC, STKaiti, serif
 .indent
   text-indent: 2em !important
 
-@mixin define-font-class($name, $font)
-  .#{$name}
-    font-family: $font !important
+.font-songti-light
+  font-family: Songti Light, Songti SC, STSong, SimSun, serif
+  font-weight: 300
 
-@include define-font-class(font-songti, $font-songti)
-@include define-font-class(font-mingti, $font-mingti)
-@include define-font-class(font-kaiti, $font-kaiti)
+.font-songti-bold
+  font-family: Songti Bold, Songti SC, STSong, SimSun, serif
+  font-weight: bold
+
+.font-songti-black
+  font-family: Songti Black, Songti SC, STSong, SimSun, serif
+  font-weight: 900
+
+.font-mingti
+  font-family: Mingti, MingLiU, Songti Bold, Songti SC, STSong, SimSun, serif
+  font-weight: bold
+
+.font-kaiti
+  font-family: Kaiti, Kaiti SC, STKaiti, serif
+  font-weight: normal
 
 // General styles
 
@@ -83,16 +91,14 @@ html
   font-size: $root-font-size
 
 body
-  font-family: $font-songti
-  font-weight: 300
+  @extend .font-songti-light
   letter-spacing: 0em
 
 .navbar
   z-index: 1030
 
   background: $color-primary
-  font-family: $font-songti
-  font-weight: bold
+  @extend .font-songti-bold
 
   a
     white-space: nowrap
@@ -147,7 +153,8 @@ body
   transition: .5s ease
 
   background: white
-  font: bold 90%/1 $font-songti
+  font-size: 90%
+  line-height: 1
 
   @for $offset from 0 to 5
     $screen-width: $breakpoint-large + $offset * 8rem
@@ -163,10 +170,11 @@ body
     @include contents-color()
 
   & > a
-    font-family: $font-mingti
+    @extend .font-mingti
     padding: .65rem 0 .25rem 0
 
   & > nav > a
+    @extend .font-songti-light
     font-size: 90%
     padding: .25rem 0 .25rem 1em
 
@@ -199,10 +207,12 @@ main
 .article, .poem, .previous-next-articles
   max-width: 100%
 
-  font: #{$article-font-size}/2 $font-songti
+  @extend .font-songti-light
+  font-size: $article-font-size
+  line-height: 2
 
   .title-line
-    font-weight: 900
+    @extend .font-songti-black
 
   .article-text
     max-width: $article-max-width
@@ -214,13 +224,15 @@ main
   h1, h2, h3, h4, h5, h6
     margin: 3em 0 2em 0
 
+  b, strong
+    @extend .font-songti-bold
+
   h5
     font-size: 1.1em
 
   p
     margin-bottom: 1em
 
-    font-weight: 300
     color: $color-primary
     text-align: justify
     white-space: pre-wrap
@@ -242,8 +254,12 @@ main
         text-align: right !important
 
     p, li
-      font-family: $font-kaiti
+      @extend .font-kaiti
       text-indent: 0
+
+      b, strong
+        @extend .font-kaiti
+        font-weight: bolder
 
   img
     width: 100%
@@ -268,4 +284,4 @@ main
 .previous-next-articles
   width: $article-max-width
 
-  font-weight: bold
+  @extend .font-mingti
