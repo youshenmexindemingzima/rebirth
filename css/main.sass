@@ -83,8 +83,6 @@ html
   font-size: $root-font-size
 
 body
-  overflow-y: hidden
-
   font-family: $font-songti
   font-weight: 300
   letter-spacing: 0em
@@ -106,7 +104,7 @@ body
       color: #fff
 
 @mixin contents-position()
-  position: absolute
+  position: fixed
   top: 3.5rem
   bottom: 0
   left: 0
@@ -181,7 +179,6 @@ body
 main
   position: relative
   padding: 0 $padding-x
-  overflow-y: scroll
 
   @media screen and (min-width: $breakpoint-small * $root-font-size / 1rem)
     padding: 0 $padding-x-small
