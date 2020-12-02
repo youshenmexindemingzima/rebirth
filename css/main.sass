@@ -7,7 +7,7 @@
 $breakpoint-small: 32rem
 $breakpoint-large: 56rem
 
-$padding-x: 4rem
+$padding-x: 3rem
 $padding-x-small: 6rem
 $padding-x-large: 8rem
 
@@ -195,6 +195,7 @@ main
     padding: 0 $padding-x-large
 
   & > *
+    max-width: 100%
     margin-top: 1.5rem
     margin-bottom: 1.5rem
 
@@ -205,8 +206,6 @@ main
       margin-bottom: 4rem
 
 .article, .poem, .previous-next-articles
-  max-width: 100%
-
   @extend .font-songti-light
   font-size: $article-font-size
   line-height: 2
