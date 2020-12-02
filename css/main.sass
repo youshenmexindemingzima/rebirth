@@ -34,11 +34,11 @@ $color-primary: black
     @if $font-weight
       font-weight: $font-weight
 
-@include define-font-face(Songti Light, AdobeSongStd-Light, $font-weight: 300)
-@include define-font-face(Songti Bold, STSongti-SC-Bold, $font-weight: bold)
-@include define-font-face(Songti Black, STSongti-SC-Black, $font-weight: 900)
-@include define-font-face(Kaiti, STKaiti)
-@include define-font-face(Mingti, HanWangMing-Bold, $font-weight: bold)
+@include define-font-face("Songti Light", AdobeSongStd-Light, $font-weight: 300)
+@include define-font-face("Songti Bold", STSongti-SC-Bold, $font-weight: bold)
+@include define-font-face("Songti Black", STSongti-SC-Black, $font-weight: 900)
+@include define-font-face("Kaiti", STKaiti)
+@include define-font-face("Mingti", HanWangMing-Bold, $font-weight: bold)
 
 // Helper classes
 
@@ -55,23 +55,23 @@ $color-primary: black
   text-indent: 2em !important
 
 .font-songti-light
-  font-family: Songti Light, Songti SC, STSong, SimSun, serif
+  font-family: "Songti Light", Songti SC, STSong, SimSun, serif
   font-weight: 300
 
 .font-songti-bold
-  font-family: Songti Bold, Songti SC, STSong, SimSun, serif
+  font-family: "Songti Bold", Songti SC, STSong, SimSun, serif
   font-weight: bold
 
 .font-songti-black
-  font-family: Songti Black, Songti SC, STSong, SimSun, serif
+  font-family: "Songti Black", Songti SC, STSong, SimSun, serif
   font-weight: 900
 
 .font-mingti
-  font-family: Mingti, MingLiU, Songti Bold, Songti SC, STSong, SimSun, serif
+  font-family: "Mingti", MingLiU, Songti Bold, Songti SC, STSong, SimSun, serif
   font-weight: bold
 
 .font-kaiti
-  font-family: Kaiti, Kaiti SC, STKaiti, serif
+  font-family: "Kaiti", Kaiti SC, STKaiti, serif
   font-weight: normal
 
 // General styles
