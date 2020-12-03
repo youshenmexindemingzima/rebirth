@@ -115,7 +115,7 @@ body
     color: #ddd
 
     &:hover, &.active
-      color: #fff
+      color: white
 
 @mixin contents-position()
   position: fixed
@@ -213,8 +213,13 @@ main
     &:last-child
       margin-bottom: 4rem
 
-.article, .poem, .adjacent-articles
+  *::selection
+    background-color: #fff2ac
+
+.article, .poem
   @extend .font-songti-light
+
+.article, .poem, .adjacent-articles
   font-size: $article-font-size
   line-height: 2
 
