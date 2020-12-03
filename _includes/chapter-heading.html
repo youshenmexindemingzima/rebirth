@@ -1,8 +1,9 @@
 {% assign paths = include.chapter.relative_path | split: '/' -%}
+
 {% assign chapter_name = paths[2] -%}
 
-<header id="{{ chapter_name }}" class="chapter-heading d-flex flex-column align-items-center">
-  <h1 class="font-mingti mb-0" style="font-size: 1.75em;">{{ chapter_name }}</h1>
+<header class="chapter-heading d-flex flex-column align-items-center">
+  <h1 id="{{ chapter_name }}" class="font-mingti mb-0" style="font-size: 1.75em;">{{ chapter_name }}</h1>
 
   <div class="my-3" style="border-bottom: 1px solid black; width: 12rem; max-width: 100%;"></div>
 
