@@ -1,6 +1,6 @@
 {% assign id = include.article.relative_path | split: '/' | last | remove_first: '.md' -%}
 {% capture markdown_options -%}
-  {::options auto_id_prefix="{{ id }}-" footnote_prefix="{{ id }}-" /}
+  {::options auto_id_prefix="{{ id }}-" footnote_prefix="{{ id }}-" header_offset="4" /}
 {% endcapture -%}
 
 <article class="{% if include.article.poem -%} poem {%- else -%} article {%- endif %}">

@@ -7,11 +7,10 @@ author: 郭文瀚
 
 timezone: China/Shanghai
 
-permalink: /:year-:month-:title
-
 collections:
   articles:
     output: true
+    permalink: /期刊/:path
 
 defaults:
   - scope:
@@ -31,9 +30,6 @@ defaults:
       path: "_articles/index.md"
     values:
       layout: issues_index
-
-kramdown:
-  header_offset: 4
 
 exclude:
   - .sass_cache/

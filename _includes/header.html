@@ -7,12 +7,12 @@
 
   <ul class="navbar-nav ml-auto">
     <li class="nav-item dropdown">
-      <a href="{{ '/articles/' | relative_url }}" class="dark-link nav-link dropdown-toggle" id="issues-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <a href="{{ '/' | relative_url }}期刊/" class="dark-link nav-link dropdown-toggle" id="issues-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         期刊
       </a>
       <div class="dropdown-menu dropdown-menu-right bg-dark" aria-labelledby="issues-toggle">
         {% for issue_name in issues_index.issues -%}
-          <a class="dark-link dropdown-item bg-dark" href="{{ '/' | relative_url }}articles/{{ issue_name }}/">{{ issue_name }}</a>
+          <a class="dark-link dropdown-item bg-dark" href="{{ '/' | relative_url }}期刊/{{ issue_name }}/">{{ issue_name }}</a>
         {%- endfor %}
       </div>
     </li>
