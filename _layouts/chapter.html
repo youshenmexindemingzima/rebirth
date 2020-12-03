@@ -20,7 +20,7 @@ layout: default
     {% include article.html article=article -%}
   {%- endfor %}
 
-  {% include adjacent-articles.html chapter=page -%}
+  {% include paginator.html chapter=page -%}
 </main>
 
 {% include contents.html chapter=page %}
