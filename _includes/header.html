@@ -12,12 +12,12 @@
       </a>
       <div class="dropdown-menu dropdown-menu-right bg-dark" aria-labelledby="issues-toggle">
         {% for issue_name in issues_index.issues -%}
-          <a class="dark-link dropdown-item bg-dark" href="{{ '/' | relative_url }}期刊/{{ issue_name }}/">{{ issue_name }}</a>
+          <a href="{{ '/' | relative_url }}期刊/{{ issue_name }}/" class="dark-link dropdown-item bg-dark">{{ issue_name }}</a>
         {%- endfor %}
       </div>
     </li>
 
-    <li class="nav-item {% if page.name == "关于.md" -%} active {%- endif %}">
+    <li class="nav-item">
       <a class="dark-link nav-link" href="{{ '/关于' | relative_url }}">关于</a>
     </li>
   </ul>
