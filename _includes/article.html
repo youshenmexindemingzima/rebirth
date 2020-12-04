@@ -4,8 +4,8 @@
 {% endcapture -%}
 
 <article class="{% if include.article.poem -%} poem {%- else -%} article {%- endif %}">
-  <h5 id="{{ id }}" class="title-line mt-3 mb-5">
-    {%- unless include.article.heading == false -%}
+  {%- unless include.article.heading == false -%}
+    <h5 id="{{ id }}" class="title-line mt-3 mb-5">
       {%- if include.article.heading -%}
         {{ include.article.heading | join: '<span class="space"></span><span class="space"></span>' }}
       {%- elsif include.article.author -%}
@@ -13,10 +13,10 @@
       {%- else -%}
         {{ include.article.title }}
       {%- endif -%}
-    {%- endunless -%}
-  </h5>
+    </h5>
+  {%- endunless -%}
 
-  <div class="article-text {% if include.article.split_columns -%} split-columns {%- endif %}">
+  <div {% if include.article.heading == false -%} id="{{ id }}" {%- endif %} class="article-text {% if include.article.split_columns -%} split-columns {%- endif %}">
     {{ include.article.content | prepend: markdown_options | markdownify }}
   </div>
 </article>

@@ -5,40 +5,33 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    {% assign separator = ' - ' -%}
     {% capture title -%}
       {%- if page.url == '/' -%}
-        {{ site.title }} | {{ site.tagline }}
+        {{ site.title }}{{ separator }}{{ site.tagline }}
       {%- elsif page.collection == 'articles' -%}
         {%- assign paths = page.relative_path | split: '/' -%}
         {%- if paths.size == 2 -%}
-          期刊 | {{ site.title }}
+          期刊{{ separator }}{{ site.title }}
         {%- elsif paths.size == 3 -%}
-          {{ paths[1] }} | {{ site.title }}
+          {{ paths[1] }}{{ separator }}{{ site.title }}
         {%- elsif paths.size == 4 -%}
-          {{ paths[2] }} | {{ paths[1] }}
+          {{ paths[2] }}{{ separator }}{{ paths[1] }}{{ separator }}{{ site.title }}
         {%- elsif paths.size == 5 -%}
           {%- if page.author -%}
-            《{{ page.title }}》{{ page.author }} | {{ paths[1] }}
+            《{{ page.title }}》{{ page.author }}{{ separator }}{{ paths[1] }}{{ separator }}{{ site.title }}
           {%- else -%}
-            《{{ page.title }}》 | {{ paths[1] }}
+            《{{ page.title }}》{{ separator }}{{ paths[1] }}{{ separator }}{{ site.title }}
           {%- endif -%}
         {%- endif -%}
       {%- else -%}
-        {{ page.title }} | {{ site.title }}
+        {{ page.title }}{{ separator }}{{ site.title }}
       {%- endif -%}
     {%- endcapture -%}
-    {%- assign title = title | strip_html | xml_escape -%}
+    <title>{{ title | strip_html | xml_escape }}</title>
 
-    <title>{{ title }}</title>
-
-    <meta property="og:title" content="{{ title }}">
     <meta name="author" content="{{ page.author | default: site.author | xml_escape }}">
-    <meta property="og:locale" content="zh_CN">
-    <meta name="description" content="{{ page.description | default: page.excerpt | strip_html | xml_escape | truncate: 50 }}">
-    <meta property="og:description" content="{{ page.description | default: page.excerpt | strip_html | xml_escape | truncate: 50 }}">
-    <link rel="canonical" href="{{ page.url | absolute_url }}">
-    <meta property="og:url" content="{{ page.url | absolute_url }}">
-    <meta property="og:site_name" content="{{ site.title | xml_escape }}">
+    <meta name="description" content="{{ page.description | default: page.subtitle.first | default: page.excerpt | default: content | strip_html | strip_newlines | replace: ' ', '' | strip | xml_escape | truncate: 80 }}">
 
     <link rel="stylesheet" href="{{ '/vendors/bootstrap/bootstrap.min.css' | relative_url }}">
     <link rel="stylesheet" href="{{ '/css/main.css' | relative_url }}">
