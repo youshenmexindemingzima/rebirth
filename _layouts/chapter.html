@@ -11,6 +11,8 @@ layout: default
 <main class="d-flex flex-column align-items-center">
   {% include chapter-heading.html chapter=page %}
 
+  {{ content }}
+
   {% for article_name in page.articles -%}
     {% capture article_path -%}
       _articles/{{ issue_name }}/{{ chapter_name }}/{{ article_name }}.md

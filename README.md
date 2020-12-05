@@ -2,9 +2,9 @@
 
 # 待实现的功能/修复
 
-- [ ] 插图
-  - [ ] 记得支持直接使用`![](){::.caption-top-left caption="作者"}`
-  - [ ] 记得使用`img[caption]::after { content: attr(caption) }`这种东西
+- [x] 插图
+  - [x] 记得支持直接使用`![](){::.caption-top-left caption="作者"}`
+  - [x] 记得使用`img[caption]::after { content: attr(caption) }`这种东西
 - [ ] 期刊首章上方的期刊名+日期
 - [ ] 在`window`的`load.bs.scrollspy.data-api`之前scrollspy都不能用；而现在`window`的`load`慢得像胡臻杰补作业一样
   - [ ] 因为字体文件太大了，试一试subsetting
@@ -20,6 +20,11 @@
 - [x] 对`<main>`下面所有`<a>`都进行`a, a:hover { text-decoration: underline .2em }`而不是只是`<article>`
 - [x] 适当将风格代码转移到`main`或`main > *`下，毕竟都是正文，格式应该相像
 - [x] 看一下`MingLiU`是啥样的——太细了，不好看，去掉了
+- [ ] `a.footnote:target`会换行
+- [ ] 支持部分文本拍成2列
+- [ ] 应丹尼要求，`<article>`这种文本不应该`align-self: center`而应该是`flex-start`，这样窄诗歌/图片/其它款文本可以左对齐
+- [x] 图片压缩
+  - [ ] 最好可以写个程序
 
 快了快了，别急别急
 
@@ -131,6 +136,8 @@ articles:
   - [文章文件名2]
   - ...
 ---
+
+[正文内容（即板块标题之后、第一篇文章之前的内容）]
 ```
 
 例一（第一期/序言）：
@@ -145,6 +152,9 @@ articles:
   - 张云起序言
   - 胡臻杰序言
 ---
+
+![](Eric Tang.jpg)
+{:.caption-bottom-right-outside caption="Eric Tang 唐宇澄"}
 ```
 
 例二（第一期/假真实与真梦境）：
@@ -162,6 +172,9 @@ articles:
   - 四月的春雪
   - 希区柯克是如何满足观众的
 ---
+
+![](sophisticated.jpg)
+{:.caption.bottom.left.inside caption="Danny Guo 郭文瀚"}
 ```
 
 ### 添加文章
@@ -260,5 +273,8 @@ entry: false
 
 [链接](https://rebirthjournal.cn)
 
-![插入图片](img/图片.png)
+![插入图片](图片.jpg)
+{:.caption.bottom.right.outside caption="作者"}
 ```
+
+注意：图片要另起一段；需要跟一个`{:.caption.* caption="作者"}`，这里`.*`是说明文字的位置，里面可以是`.top`/`.right`/`.bottom`/`.left`，如果某个方向没写这个`.*`的话默认居中。使用`caption="说明文字"`来注明图片。

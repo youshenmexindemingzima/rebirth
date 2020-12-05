@@ -7,3 +7,6 @@ articles:
   - 张云起序言
   - 胡臻杰序言
 ---
+
+![](Eric Tang.jpg)
+{:.caption.bottom.right.outside caption="Eric Tang 唐宇澄"}

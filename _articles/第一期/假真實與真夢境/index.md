@@ -10,3 +10,6 @@ articles:
   - 四月的春雪
   - 希区柯克是如何满足观众的
 ---
+
+![](sophisticated.jpg)
+{:.caption.bottom.left.inside caption="Danny Guo 郭文瀚"}

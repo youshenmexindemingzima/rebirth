@@ -12,3 +12,6 @@ articles:
   - 李思逸无题3
   - 室思
 ---
+
+![](Jessica Zhang Y10 GCSE Coursework.jpg)
+{:.caption.bottom.right.inside caption="Jessica Zhang 张洁"}

@@ -195,6 +195,9 @@ main
   position: relative
   padding: 0 $padding-x
 
+  @extend .font-songti-light
+  font-size: $article-font-size
+  line-height: 2
   color: $color-primary
 
   @media screen and (min-width: $breakpoint-small * $root-font-size / 1rem)
@@ -204,7 +207,7 @@ main
     padding: 0 $padding-x-large
 
   & > *
-    max-width: 100%
+    max-width: $article-max-width
     margin-top: 1.5rem
     margin-bottom: 1.5rem
 
@@ -224,8 +227,6 @@ main
       margin-right: 2em
 
   .article-text
-    max-width: $article-max-width
-
     @media screen and (min-width: 2 * $padding-x-small * $root-font-size / 1rem + $article-min-width * $article-font-size * $root-font-size / 1em / 1em)
       min-width: $article-min-width
 
@@ -234,6 +235,7 @@ main
 
     text-align: justify
     white-space: pre-wrap
+    text-indent: 2em
 
   a
     text-decoration: underline .2em rgba($color-primary, .25)
@@ -283,22 +285,64 @@ main
     ol
       font-size: small
 
-  img
-    width: 100%
-    float: left
-    margin: 1em 0
+  .caption
+    position: relative
 
-.article, .poem
-  @extend .font-songti-light
+    text-indent: 0
 
-.article, .poem, .paginator
-  font-size: $article-font-size
-  line-height: 2
+    img
+      width: 100%
 
-.article p
-  text-indent: 2em
+    &:last-child
+      margin-top: 5em
+
+    &::after
+      content: attr(caption)
+      width: max-content
+      position: absolute
+      top: 0
+      right: 0
+      bottom: 0
+      left: 0
+      margin: auto
+      padding: 1em
+
+      @extend .font-mingti
+      line-height: 1
+
+    &.left::after
+      right: auto
+
+    &.right::after
+      left: auto
+
+    &.inside::after
+      color: white
+
+    &.top.inside::after
+      bottom: auto
+
+    &.top.outside
+      margin-top: 1em
+
+      &::after
+        top: auto
+        bottom: 100%
+
+    &.bottom.inside::after
+      top: auto
+
+    &.bottom.outside
+      margin-bottom: 2em
+
+      &::after
+        top: 100%
+        bottom: auto
+
+.poem p
+  text-indent: 0
 
 .paginator
-  width: $article-max-width
+  width: 100%
 
   @extend .font-mingti

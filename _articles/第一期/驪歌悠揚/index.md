@@ -9,3 +9,6 @@ articles:
   - 再见，科尔宾先生
   - 论苏格拉底
 ---
+
+![](Karin Ji Y10 GCSE Coursework.jpg)
+{:.caption.bottom.left.inside caption="Karin Ji 纪春露"}
