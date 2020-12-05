@@ -5,13 +5,16 @@
 
 <article class="{% if include.article.poem -%} poem {%- else -%} article {%- endif %}">
   {%- unless include.article.heading == false -%}
-    <h5 id="{{ id }}" class="title-line mt-3 mb-5">
+    <h5 id="{{ id }}" class="title-line d-flex flex-wrap mt-3 mb-5">
       {%- if include.article.heading -%}
-        {{ include.article.heading | join: '<span class="space"></span><span class="space"></span>' }}
+        {%- for heading in include.article.heading -%}
+          <span>{{ heading }}</span>
+        {%- endfor -%}
       {%- elsif include.article.author -%}
-        {{ include.article.title }}<span class="space"></span><span class="space"></span>{{ include.article.author }}
+        <span>{{ include.article.title }}</span>
+        <span>{{ include.article.author }}</span>
       {%- else -%}
-        {{ include.article.title }}
+        <span>{{ include.article.title }}</span>
       {%- endif -%}
     </h5>
   {%- endunless -%}

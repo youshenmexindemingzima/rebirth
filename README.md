@@ -2,9 +2,24 @@
 
 # 待实现的功能/修复
 
-* 插图
-* 期刊首章上方的期刊名+日期
-* 手机上的主页大印号不对
+- [ ] 插图
+  - [ ] 记得支持直接使用`![](){::.caption-top-left caption="作者"}`
+  - [ ] 记得使用`img[caption]::after { content: attr(caption) }`这种东西
+- [ ] 期刊首章上方的期刊名+日期
+- [ ] 在`window`的`load.bs.scrollspy.data-api`之前scrollspy都不能用；而现在`window`的`load`慢得像胡臻杰补作业一样
+  - [ ] 因为字体文件太大了，试一试subsetting
+  - [ ] 或者看一下字体加载有什么别的方法，可以FOUT之前直接触发`load`
+  - [ ] 实在不行可以不用自定义字体
+  - [ ] 或者直接手动触发`Event`
+- [x] 标题应为`display: flex; flex-wrap: wrap; some-kind-of-gap: 2em;`或者这类的基于`gap`或者`margin`的空白
+- [ ] scrollspy的`data-offset`好像需要比`:target`的`height`大那么一两个，不能都是`100`
+  - [ ] 说到scrollspy，文章最上方根本不在`header > h1:target::before`范围内，而且这个`::before`对`#[板块名称]`的url根本没用，还是那样卡在navbar里面
+    - [ ] 这次改了标题之后现在所有的`:target`都不对了，我觉得最好直接在`<header>`和`<article>`前用一个ghost element `<span id="[名称]"></span>`；否则就revert之前的东西并且把所有`display: flex`去掉，这好像是个chrome的bug
+- [ ] 主页的大引号应该用`opacity`而不是`color: rgba()`
+- [ ] `#contents`里面的`.active`和`:hover`的效果应该有点细微的不一样，比如一个`color: $color-primary`一个`text-decoration`或者后者比前者`color`更浅
+- [x] 对`<main>`下面所有`<a>`都进行`a, a:hover { text-decoration: underline .2em }`而不是只是`<article>`
+- [x] 适当将风格代码转移到`main`或`main > *`下，毕竟都是正文，格式应该相像
+- [x] 看一下`MingLiU`是啥样的——太细了，不好看，去掉了
 
 快了快了，别急别急
 
