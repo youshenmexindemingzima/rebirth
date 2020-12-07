@@ -9,5 +9,5 @@ articles:
   - 这次我们去哪
 ---
 
-![](Jessica Zhang 张洁.jpg)
+![](/img/Jessica Zhang 张洁.jpg)
 {:.caption.bottom.left.inside caption="Jessica Zhang 张洁"}

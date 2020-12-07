@@ -10,5 +10,5 @@ articles:
   - 想做一株野花
 ---
 
-![](Aaron Lin 林永熹.jpg)
+![](/img/Aaron Lin 林永熹.jpg)
 {:.caption.bottom.left.inside caption="Aaron Lin 林永熹"}

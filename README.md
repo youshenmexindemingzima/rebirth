@@ -5,6 +5,7 @@
 - [x] 插图
   - [x] 记得支持直接使用`![](){::.caption-top-left caption="作者"}`
   - [x] 记得使用`img[caption]::after { content: attr(caption) }`这种东西
+  - [ ] README添加插图文档
 - [ ] 期刊首章上方的期刊名+日期
 - [ ] 在`window`的`load.bs.scrollspy.data-api`之前scrollspy都不能用；而现在`window`的`load`慢得像胡臻杰补作业一样
   - [ ] 因为字体文件太大了，试一试subsetting
@@ -25,6 +26,8 @@
 - [ ] 应丹尼要求，`<article>`这种文本不应该`align-self: center`而应该是`flex-start`，这样窄诗歌/图片/其它款文本可以左对齐
 - [x] 图片压缩
   - [ ] 最好可以写个程序
+- [ ] 404页
+- [ ] 管一下中文URL escape和relative URL
 
 快了快了，别急别急
 
@@ -153,7 +156,7 @@ articles:
   - 胡臻杰序言
 ---
 
-![](Eric Tang.jpg)
+![](/img/Eric Tang.jpg)
 {:.caption-bottom-right-outside caption="Eric Tang 唐宇澄"}
 ```
 
@@ -173,7 +176,7 @@ articles:
   - 希区柯克是如何满足观众的
 ---
 
-![](sophisticated.jpg)
+![](/img/sophisticated.jpg)
 {:.caption.bottom.left.inside caption="Danny Guo 郭文瀚"}
 ```
 
@@ -273,7 +276,7 @@ entry: false
 
 [链接](https://rebirthjournal.cn)
 
-![插入图片](图片.jpg)
+![插入图片](/img/图片.jpg)
 {:.caption.bottom.right.outside caption="作者"}
 ```
 

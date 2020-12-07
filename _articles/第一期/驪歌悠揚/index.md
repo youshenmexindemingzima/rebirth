@@ -10,5 +10,5 @@ articles:
   - 论苏格拉底
 ---
 
-![](Karin Ji Y10 GCSE Coursework.jpg)
+![](/img/Karin Ji Y10 GCSE Coursework.jpg)
 {:.caption.bottom.left.inside caption="Karin Ji 纪春露"}
