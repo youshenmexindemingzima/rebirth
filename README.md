@@ -6,6 +6,7 @@
   - [x] 记得支持直接使用`![](){::.caption-top-left caption="作者"}`
   - [x] 记得使用`img[caption]::after { content: attr(caption) }`这种东西
   - [ ] README添加插图文档
+  - [x] 好像safari的caption会换行
 - [ ] 期刊首章上方的期刊名+日期
 - [ ] 在`window`的`load.bs.scrollspy.data-api`之前scrollspy都不能用；而现在`window`的`load`慢得像胡臻杰补作业一样
   - [ ] 因为字体文件太大了，试一试subsetting
