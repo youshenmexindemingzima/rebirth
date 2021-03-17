@@ -4,8 +4,10 @@
 {% endcapture -%}
 
 <article class="{% if include.article.poem -%} poem {%- else -%} article {%- endif %}">
-  {%- unless include.article.heading == false -%}
-    <h5 id="{{ id }}" class="title-line d-flex flex-wrap mt-3 mb-5">
+  <div id="{{ id }}"></div>
+
+  {% unless include.article.heading == false -%}
+    <h5 class="title-line d-flex flex-wrap mt-3 mb-5">
       {%- if include.article.heading -%}
         {%- for heading in include.article.heading -%}
           <span>{{ heading }}</span>

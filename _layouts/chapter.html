@@ -8,7 +8,7 @@ layout: default
 
 {% assign issue_name = paths[1] -%}
 
-<main class="d-flex flex-column align-items-center">
+<main id="{{ chapter_name }}" class="d-flex flex-column align-items-center">
   {% include chapter-heading.html chapter=page %}
 
   {{ content }}
