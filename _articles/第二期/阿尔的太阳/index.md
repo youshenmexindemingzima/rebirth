@@ -24,3 +24,6 @@ articles:
   - 行香子与秋
   - 无题两首
 ---
+
+![](/img/诗歌专栏 章节图 pic by Alex Xue.jpg)
+{:.caption.bottom.left.inside caption="Alex Xue 薛皓天"}

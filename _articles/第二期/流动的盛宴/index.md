@@ -10,3 +10,6 @@ articles:
   - 纽约的月亮
   - 月亮河
 ---
+
+![](/img/流动的盛宴 章节图 pic by Aaron Lin.jpeg)
+{:.caption.top.left.inside caption="Aaron Lin 林永熹"}

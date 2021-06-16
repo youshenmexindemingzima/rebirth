@@ -6,3 +6,6 @@ subtitle_cite: 王小波
 articles:
   - 序言
 ---
+
+![](/img/IMG_0540.jpg)
+{:.caption.bottom.right.inside caption="Danny Guo 郭文瀚"}

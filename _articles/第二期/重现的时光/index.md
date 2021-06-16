@@ -9,3 +9,6 @@ articles:
   - 那天我见到了落日
   - 故校和新校区
 ---
+
+![](/img/昨日的世界 章节图 pic by Tia Zhang.jpg)
+{:.caption.bottom.left.outside caption="Tia Zhang 张添爱"}

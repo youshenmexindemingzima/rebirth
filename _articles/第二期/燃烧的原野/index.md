@@ -9,3 +9,6 @@ articles:
   - 舔人 复读人 静音人
   - 先生
 ---
+
+![](/img/社会与时代 章节图 pic by Alex Xue.jpg)
+{:.caption.bottom.left.inside caption="Alex Xue 薛皓天"}
