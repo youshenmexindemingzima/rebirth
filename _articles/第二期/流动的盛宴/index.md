@@ -11,5 +11,5 @@ articles:
   - 月亮河
 ---
 
-![](/img/流动的盛宴 章节图 pic by Aaron Lin.jpeg)
+![](/img/流动的盛宴 章节图 pic by Aaron Lin.jpg)
 {:.caption.top.left.inside caption="Aaron Lin 林永熹"}
