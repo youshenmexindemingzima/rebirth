@@ -1,42 +1,5 @@
 新生网站 <https://rebirthjournal.cn>。
 
-# 待实现的功能/修复
-
-- [x] 插图
-  - [x] 记得支持直接使用`![](){::.caption-top-left caption="作者"}`
-  - [x] 记得使用`img[caption]::after { content: attr(caption) }`这种东西
-  - [x] README添加插图文档
-  - [x] 好像safari的caption会换行
-- [ ] 期刊首章上方的期刊名+日期
-- [ ] 在`window`的`load.bs.scrollspy.data-api`之前scrollspy都不能用；而现在`window`的`load`慢得像胡臻杰补作业一样
-  - [x] 因为字体文件太大了，试一试subsetting
-  - [x] 或者看一下字体加载有什么别的方法，可以FOUT之前直接触发`load`
-  - [x] 实在不行可以不用自定义字体
-  - [ ] 或者直接手动触发`Event`
-- [x] 标题应为`display: flex; flex-wrap: wrap; some-kind-of-gap: 2em;`或者这类的基于`gap`或者`margin`的空白
-- [x] scrollspy的`data-offset`好像需要比`:target`的`height`大那么一两个，不能都是`100`（不改了）
-  - [x] 说到scrollspy，文章最上方根本不在`header > h1:target::before`范围内，而且这个`::before`对`#[板块名称]`的url根本没用，还是那样卡在navbar里面
-    - [x] 这次改了标题之后现在所有的`:target`都不对了，我觉得最好直接在`<header>`和`<article>`前用一个ghost element `<span id="[名称]"></span>`；否则就revert之前的东西并且把所有`display: flex`去掉，这好像是个chrome的bug
-- [x] 主页的大引号应该用`opacity`而不是`color: rgba()`
-- [ ] `#contents`里面的`.active`和`:hover`的效果应该有点细微的不一样，比如一个`color: $color-primary`一个`text-decoration`或者后者比前者`color`更浅
-- [x] 对`<main>`下面所有`<a>`都进行`a, a:hover { text-decoration: underline .2em }`而不是只是`<article>`
-- [x] 适当将风格代码转移到`main`或`main > *`下，毕竟都是正文，格式应该相像
-- [x] 看一下`MingLiU`是啥样的——太细了，不好看，去掉了
-- [x] `a.footnote:target`会换行
-- [ ] 应丹尼要求：
-  - [ ] `poem`应该归为板块的front matter而不是单独文章的
-  - [ ] 通过这个`poem`可以使得一个诗歌板块变窄（20em左右）
-    - [ ] 所以不需要`max-width:`只要`width`就可以了
-  - [ ] `poem`在`min-width`之下可以整个板块排成2列，到时候看一下是小还是大breakpoint好
-    - [ ] 使用CSS grid做别用flex
-  - [ ] 忙完这个之后看一下单独的poem文章怎么弄
-- [x] 图片压缩
-  - [ ] 最好可以写个程序
-- [ ] 404页
-- [ ] 管一下中文URL escape和relative URL
-
-快了快了，别急别急
-
 # 上传指导
 
 ## 这些文件是什么？
@@ -118,8 +81,6 @@ chapters:
   - ...
 ---
 ```
-
-为使用明体标题，请使用繁体。
 
 ### 添加板块/章节
 
@@ -287,3 +248,40 @@ entry: false
 ```
 
 注意：图片要另起一段；需要跟一个`{:.caption.* caption="作者"}`，这里`.*`是说明文字的位置，里面可以是`.top`/`.right`/`.bottom`/`.left`，如果某个方向没写这个`.*`的话默认居中。使用`caption="说明文字"`来注明图片。
+
+# 待实现的功能/修复
+
+- [x] 插图
+  - [x] 记得支持直接使用`![](){::.caption-top-left caption="作者"}`
+  - [x] 记得使用`img[caption]::after { content: attr(caption) }`这种东西
+  - [x] README添加插图文档
+  - [x] 好像safari的caption会换行
+- [ ] 期刊首章上方的期刊名+日期
+- [ ] 在`window`的`load.bs.scrollspy.data-api`之前scrollspy都不能用；而现在`window`的`load`慢得像胡臻杰补作业一样
+  - [x] 因为字体文件太大了，试一试subsetting
+  - [x] 或者看一下字体加载有什么别的方法，可以FOUT之前直接触发`load`
+  - [x] 实在不行可以不用自定义字体
+  - [ ] 或者直接手动触发`Event`
+- [x] 标题应为`display: flex; flex-wrap: wrap; some-kind-of-gap: 2em;`或者这类的基于`gap`或者`margin`的空白
+- [x] scrollspy的`data-offset`好像需要比`:target`的`height`大那么一两个，不能都是`100`（不改了）
+  - [x] 说到scrollspy，文章最上方根本不在`header > h1:target::before`范围内，而且这个`::before`对`#[板块名称]`的url根本没用，还是那样卡在navbar里面
+    - [x] 这次改了标题之后现在所有的`:target`都不对了，我觉得最好直接在`<header>`和`<article>`前用一个ghost element `<span id="[名称]"></span>`；否则就revert之前的东西并且把所有`display: flex`去掉，这好像是个chrome的bug
+- [x] 主页的大引号应该用`opacity`而不是`color: rgba()`
+- [ ] `#contents`里面的`.active`和`:hover`的效果应该有点细微的不一样，比如一个`color: $color-primary`一个`text-decoration`或者后者比前者`color`更浅
+- [x] 对`<main>`下面所有`<a>`都进行`a, a:hover { text-decoration: underline .2em }`而不是只是`<article>`
+- [x] 适当将风格代码转移到`main`或`main > *`下，毕竟都是正文，格式应该相像
+- [x] 看一下`MingLiU`是啥样的——太细了，不好看，去掉了
+- [x] `a.footnote:target`会换行
+- [ ] 应丹尼要求：
+  - [ ] `poem`应该归为板块的front matter而不是单独文章的
+  - [ ] 通过这个`poem`可以使得一个诗歌板块变窄（20em左右）
+    - [ ] 所以不需要`max-width:`只要`width`就可以了
+  - [ ] `poem`在`min-width`之下可以整个板块排成2列，到时候看一下是小还是大breakpoint好
+    - [ ] 使用CSS grid做别用flex
+  - [ ] 忙完这个之后看一下单独的poem文章怎么弄
+- [x] 图片压缩
+  - [ ] 最好可以写个程序
+- [ ] 404页
+- [ ] 管一下中文URL escape和relative URL
+
+快了快了，别急别急
